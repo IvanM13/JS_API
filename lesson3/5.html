@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        'use strict';
+        (async () => {
+            const url ='https://catfact.ninja/fact';
+            const response = await fetch(url);
+            console.log(response.status);
+            console.log(response.ok);
+            const fact = await response.json();
+            console.log(fact);
+        })();
+    </script>
+</body>
+</html>

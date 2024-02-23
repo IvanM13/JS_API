@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Список товаров</h1>
+    <label for="sort-select">Сортировка:</label>
+   <select id="sort-select">
+        <option value="abc">По возрастанию цены</option>
+        <option value="desc">По убыванию цены</option>
+   </select>
+   
+   <ul id="product-list">
+        <li class="product-item">Товар 1 - $50</li>
+        <li class="product-item">Товар 2 - $30</li>
+        <li class="product-item">Товар 3 - $70</li>
+        <li class="product-item">Товар 4 - $20</li>
+   </ul>
+
+   <script>
+    const sortSelect = document.querySelector('#sort-select');
+
+    const productList = document.querySelector('#product-list');
+
+    const productItems = Array.from(document.querySelectorAll('.product-item'));
+
+    console.log(productItems);
+
+    sortSelect.onchange = function () {
+        
+        const selectOption = sortSelect.value;
+
+        if (selectOption === 'abc') {
+            productItems.sort((a, b) =>{
+                const priceA = parseInt(a.textContent.split('- $')[1]);
+
+                const priceB = parseInt(b.textContent.split('- $')[1]);
+
+                return priceA - priceB;
+                
+            });
+        } else if (selectOption === 'desc'){
+            productItems.sort((a, b) =>{
+                const priceA = parseInt(a.textContent.split('- $')[1]);
+
+                const priceB = parseInt(b.textContent.split('- $')[1]);
+
+                return priceB - priceA;
+        });
+        }
+
+        productItems.forEach(item => productList.appendChild(item));
+    }
+   </script>
+</body>
+</html>
