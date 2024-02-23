@@ -22,11 +22,9 @@ async function getRandomImage() {
         document.getElementById('image').src = imageUrl;
         document.getElementById('photographer').textContent = `Photographer: ${photographerName} (@${photographerUsername})`;
 
-        // Check if image is already liked
         liked = likedImages.includes(imageUrl);
         updateLikeButton();
 
-        // Add image to history
         history.unshift({ imageUrl, photographerName });
         localStorage.setItem('history', JSON.stringify(history));
     } catch (error) {
