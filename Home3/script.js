@@ -35,7 +35,7 @@ async function getRandomImage() {
 }
 
 function updateLikeButton() {
-    likeBtn.textContent = liked ? '❤️' : '❤️';
+    likeBtn.innerHTML = liked ? '❤️' : '❤️';
 }
 
 likeBtn.addEventListener('click', () => {
