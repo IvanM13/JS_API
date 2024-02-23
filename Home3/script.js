@@ -66,7 +66,7 @@ nextBtn.addEventListener('click', () => {
     if (history) {
         history.push();
         const nextImage = history[history.length - 1];
-        document.getElementById('image').src = nextImage.imageUrl;
+        document.getElementById('image').src = getRandomImage();
         document.getElementById('photographer').textContent = `Photographer: ${nextImage.photographerName}`;
     } else {
         alert('No previous images');
