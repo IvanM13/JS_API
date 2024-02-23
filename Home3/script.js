@@ -10,6 +10,9 @@ let liked = false;
 let likedImages = JSON.parse(localStorage.getItem('likedImages')) || [];
 let history = JSON.parse(localStorage.getItem('history')) || [];
 
+const updateLikeBtn = () => {
+    likeBtn.innerHTML = liked ? '❤️' : '❤️';
+}
 
 async function getRandomImage() {
     try {
@@ -23,7 +26,7 @@ async function getRandomImage() {
         document.getElementById('photographer').textContent = `Photographer: ${photographerName} (@${photographerUsername})`;
 
         liked = likedImages.includes(imageUrl);
-        updateLikeButton();
+        updateLikeBtn();
 
         history.unshift({ imageUrl, photographerName });
         localStorage.setItem('history', JSON.stringify(history));
@@ -32,13 +35,9 @@ async function getRandomImage() {
     }
 }
 
-function updateLikeButton() {
-    likeBtn.innerHTML = liked ? '❤️' : '❤️';
-}
-
 likeBtn.addEventListener('click', () => {
     liked = !liked;
-    updateLikeButton();
+    updateLikeBtn();
     if (liked) {
         likeCount.innerHTML = parseInt(likeCount.innerHTML) + 1;
         likedImages.push(document.getElementById('image').src);
