@@ -63,10 +63,10 @@ prevBtn.addEventListener('click', () => {
 });
 
 nextBtn.addEventListener('click', () => {
-    if (history) {
+    if (history[history.length - 1]) {
         history.push();
-        const nextImage = history[history.length - 1];
-        document.getElementById('image').src = getRandomImage();
+        const nextImage = getRandomImage();
+        document.getElementById('image').src = nextImage.imageUrl;
         document.getElementById('photographer').textContent = `Photographer: ${nextImage.photographerName}`;
     } else {
         alert('No previous images');
