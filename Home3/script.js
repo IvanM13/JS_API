@@ -2,7 +2,7 @@
 
 const accessKEY = 'CycrgxFwHEm9dPLzaDJysaFoXyHhYDGTT3MDhxA5BVQ';
 
-const likeCountElement = document.getElementById('likeCount');
+const likeCount = document.getElementById('likeCount');
 const likeBtn = document.getElementById('like');
 const prevBtn = document.getElementById('prev');
 const nextBtn = document.getElementById('next');
@@ -35,17 +35,17 @@ async function getRandomImage() {
 }
 
 function updateLikeButton() {
-    likeBtn.textContent = liked ? '💔' : '❤️';
+    likeBtn.textContent = liked ? '❤️' : '❤️';
 }
 
 likeBtn.addEventListener('click', () => {
     liked = !liked;
     updateLikeButton();
     if (liked) {
-        likeCountElement.textContent = parseInt(likeCountElement.textContent) + 1;
+        likeCount.innerHTML = parseInt(likeCount.innerHTML) + 1;
         likedImages.push(document.getElementById('image').src);
     } else {
-        likeCountElement.textContent = parseInt(likeCountElement.textContent) - 1;
+        likeCount.innerHTML = parseInt(likeCount.innerHTML) - 1;
         likedImages = likedImages.filter(image => image !== document.getElementById('image').src);
     }
     localStorage.setItem('likedImages', JSON.stringify(likedImages));
@@ -56,7 +56,7 @@ prevBtn.addEventListener('click', () => {
         history.shift();
         const prevImage = history[0];
         document.getElementById('image').src = prevImage.imageUrl;
-        document.getElementById('photographer').textContent = `Photographer: ${prevImage.photographerName}`;
+        document.getElementById('photographer').innerHTML = `Photographer: ${prevImage.photographerName}`;
     } else {
         alert('No previous images');
     }
@@ -67,7 +67,7 @@ nextBtn.addEventListener('click', () => {
         history.push();
         const nextImage = getRandomImage();
         document.getElementById('image').src = nextImage.imageUrl;
-        document.getElementById('photographer').textContent = `Photographer: ${nextImage.photographerName}`;
+        document.getElementById('photographer').innerHTML = `Photographer: ${nextImage.photographerName}`;
     } else {
         alert('No previous images');
     }
